@@ -40,10 +40,13 @@
           login: function (formName) {
             this.$refs[formName].validate((valid) => {
               if (valid) {
-                alert('submit!');
-                this.$http.get("/api/getStudent?id=1").then(function (result) {
-                  let student = JSON.parse(result.bodyText);
-                  this.userName = student.studentName;
+                this.$http.get("/api/login?userName=" + this.loginForm.name + "&userPwd=" + this.loginForm.password).then(function (result) {
+                  let resultInfo = JSON.parse(result.bodyText);
+                  if (resultInfo.result == 0) {
+                    alert("登录成功");
+                  } else {
+                    alert(resultInfo.info);
+                  }
                 }, function (err) {
                   alert(err);
                 });

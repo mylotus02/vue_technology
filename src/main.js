@@ -3,9 +3,19 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueResource from 'vue-resource'
+import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from 'axios';
+
 
 Vue.config.productionTip = false
+//开启debug模式
+Vue.config.debug = true;
+Vue.use(VueResource)
+Vue.use(ElementUI)
+axios.defaults.withCredentials=true;
+Vue.prototype.$axios = axios;
 
 /* eslint-disable no-new */
 new Vue({
